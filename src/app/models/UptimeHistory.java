@@ -24,8 +24,8 @@ public class UptimeHistory extends Model {
 
 	public static Finder<Long, UptimeHistory> find = new Finder<Long, UptimeHistory>(Long.class, UptimeHistory.class);
 
-	public static List<UptimeHistory> all() {
-		return find.all();
+	public static UptimeHistory last() {
+		return find.where().orderBy().desc("id").findList().get(0);
 	}
 
 	public static void create(UptimeHistory uptime) {

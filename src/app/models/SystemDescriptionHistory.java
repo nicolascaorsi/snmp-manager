@@ -28,6 +28,10 @@ public class SystemDescriptionHistory extends Model {
 		return find.all();
 	}
 
+	public static SystemDescriptionHistory last() {
+		return find.where().orderBy().desc("id").findList().get(0);
+	}
+
 	public static void create(SystemDescriptionHistory description) {
 		description.save();
 	}

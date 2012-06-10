@@ -50,19 +50,16 @@ public class StatisticsCollector {
 //
 
 	private static void collectProcesses() {
-//		try {
+		try {
 			ProcessesHistory process = new ProcessesHistory();
 			process.id = new Date().getTime();
 			process.date = new Date();
-			//TODO Coletar pelo hrSystemProcesses.0
-//			process.numberOfProcesses = Long.parseLong(SnmpUtils.SnmpGet("127.0.0.1 1.3.6.1.2.1.25.1.3.0").getValue());
-			process.numberOfProcesses = new Random().nextLong();
-			Logger.debug("Running processes collected ("+ process.numberOfProcesses+"s)");
+			process.numberOfProcesses = Long.parseLong(SnmpUtils.SnmpGet(SnmpOid.hrSystemProcesses).getValue());
+			Logger.debug("Running processes collected ("+ process.numberOfProcesses+")");
 			ProcessesHistory.create(process);
-			
-//		} catch (IOException e) {
-//			Logger.error("Error when reading processes counter!");
-//		}
+		} catch (IOException e) {
+			Logger.error("Error when reading processes counter!");
+		}
 	}
 
 	private static void collectUptime() {

@@ -28,6 +28,19 @@ public class ProcessesHistory extends Model {
 		return find.all();
 	}
 
+	public static ProcessesHistory getLast() {
+		return find.where().orderBy().desc("id").findList().get(0);
+	}
+
+	public static List<ProcessesHistory> getLast(int count) {
+		return find.where()
+				.orderBy()
+				.asc("id")
+				.findPagingList(count)
+				.getPage(1)
+				.getList();
+	}
+
 	public static void create(ProcessesHistory uptime) {
 		uptime.save();
 	}

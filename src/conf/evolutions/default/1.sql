@@ -24,11 +24,25 @@ create table processes_history (
   constraint pk_processes_history primary key (id))
 ;
 
+create table snmp_packets_history (
+  id                        bigint not null,
+  ammount                   bigint,
+  date                      timestamp,
+  constraint pk_snmp_packets_history primary key (id))
+;
+
 create table system_description_history (
   id                        bigint not null,
   description               varchar(255),
   date                      timestamp,
   constraint pk_system_description_history primary key (id))
+;
+
+create table tcp_segments_history (
+  id                        bigint not null,
+  ammount                   bigint,
+  date                      timestamp,
+  constraint pk_tcp_segments_history primary key (id))
 ;
 
 create table uptime_history (
@@ -44,7 +58,11 @@ create sequence memory_usage_history_seq;
 
 create sequence processes_history_seq;
 
+create sequence snmp_packets_history_seq;
+
 create sequence system_description_history_seq;
+
+create sequence tcp_segments_history_seq;
 
 create sequence uptime_history_seq;
 
@@ -61,7 +79,11 @@ drop table if exists memory_usage_history;
 
 drop table if exists processes_history;
 
+drop table if exists snmp_packets_history;
+
 drop table if exists system_description_history;
+
+drop table if exists tcp_segments_history;
 
 drop table if exists uptime_history;
 
@@ -73,7 +95,11 @@ drop sequence if exists memory_usage_history_seq;
 
 drop sequence if exists processes_history_seq;
 
+drop sequence if exists snmp_packets_history_seq;
+
 drop sequence if exists system_description_history_seq;
+
+drop sequence if exists tcp_segments_history_seq;
 
 drop sequence if exists uptime_history_seq;
 

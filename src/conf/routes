@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index()
 GET     /history/systemDescription  controllers.History.systemDescription()
 GET     /history/processes  controllers.History.processes()
+GET     /history/processes/last  controllers.History.lastProcess()
 GET     /history/memoryUsage  controllers.History.memoryUsage()
 GET     /history/uptime  controllers.History.uptime()
 GET     /history/icmpEchoRequests  controllers.History.icmpEchoRequests()

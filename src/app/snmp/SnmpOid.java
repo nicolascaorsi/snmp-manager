@@ -8,6 +8,5 @@ public class SnmpOid {
 	public static final String tcpOutSegs = "1.3.6.1.2.1.6.11.0";
 	public static final String snmpInPkts = "1.3.6.1.2.1.11.1.0";
 	public static final String snmpOutPkts = "1.3.6.1.2.1.11.2.0";
-		
-	
+	public static final String hrSystemProcesses = "1.3.6.1.2.1.25.1.6.0";
 }

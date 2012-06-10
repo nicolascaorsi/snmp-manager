@@ -20,7 +20,7 @@ public class History extends Controller {
 
 	@BodyParser.Of(Json.class)
 	public static Result systemDescription() {		
-		return ok(play.libs.Json.toJson(SystemDescriptionHistory.all()));
+		return ok(play.libs.Json.toJson(SystemDescriptionHistory.last()));
 	}
 
 	@BodyParser.Of(Json.class)
@@ -30,12 +30,17 @@ public class History extends Controller {
 
 	@BodyParser.Of(Json.class)
 	public static Result uptime() {		
-		return ok(play.libs.Json.toJson(UptimeHistory.all()));
+		return ok(play.libs.Json.toJson(UptimeHistory.last()));
 	}
 
 	@BodyParser.Of(Json.class)
 	public static Result processes() {		
-		return ok(play.libs.Json.toJson(ProcessesHistory.all()));
+		return ok(play.libs.Json.toJson(ProcessesHistory.getLast(20)));
+	}
+
+	@BodyParser.Of(Json.class)
+	public static Result lastProcess() {		
+		return ok(play.libs.Json.toJson(ProcessesHistory.getLast()));
 	}
 
 	@BodyParser.Of(Json.class)
