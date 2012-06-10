@@ -1,0 +1,15 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+GET     /history/systemDescription  controllers.History.systemDescription()
+GET     /history/processes  controllers.History.processes()
+GET     /history/memoryUsage  controllers.History.memoryUsage()
+GET     /history/uptime  controllers.History.uptime()
+GET     /history/icmpEchoRequests  controllers.History.icmpEchoRequests()
+GET     /snmp/get/:oid  controllers.History.get(oid: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
