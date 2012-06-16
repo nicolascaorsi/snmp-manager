@@ -30,6 +30,14 @@
             <h1>SNMP Monitor</h1>
             <p>SNMP Management Made Simple</p>
           </div>
+
+          <div class="row-fluid">
+            <div class="span11">
+              <h2>Processes <span class="label label-info">hrSystemProcesses</span></h2>
+              <p>The number of process contexts currently loaded or running on this system</p>
+              <p><div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div></p>
+            </div><!--/span-->
+          </div><!--/row-->
           <div class="row-fluid">
             <div class="span6">
               <h2>System Description <span class="label label-info">sysDescr</span></h2>
@@ -40,32 +48,17 @@
               <p>The monitored computer uptime is <span id="uptimeInfo"></span> seconds</p>
             </div><!--/span-->
           </div><!--/row-->
-          <div class="row-fluid">
-            <div class="span6">
-              <h2>Processes <span class="label label-info">hrSystemProcesses</span></h2>
-              <p>The number of process contexts currently loaded or running on this system is <span id="processesInfo"></span></p>
-              <p><div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div></p>
-            </div><!--/span-->
-            <div class="span6">
-              <h2>Available Memory <span class="label label-info"></span></h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
-          <div class="row-fluid">
-            <div class="span6">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span6">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
+	<div class="well form-inline">
+      <h2>Search</h2>
+      <p>Use SNMP Walk or Get to navigate under the MIB </p>
+	  <input id="oid_field" type="text" placeholder="Oid"/>
+	  <button id="get_button" onClick="clickedButton(1)" class="btn">Get</button>
+	  <button id="walk_button" onClick="clickedButton(2)" class="btn">Walk</button>
+	  <button id="clear_button" onClick="clickedButton(3)" class="btn">Clear</button>
+      <pre id="text_area" style="margin-top: 10px;" class="alert alert-infoalert alert-info"></pre>
+	</div>
 }
 
 

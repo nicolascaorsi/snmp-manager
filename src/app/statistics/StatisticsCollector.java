@@ -54,11 +54,13 @@ public class StatisticsCollector {
 			ProcessesHistory process = new ProcessesHistory();
 			process.id = new Date().getTime();
 			process.date = new Date();
-			process.numberOfProcesses = Long.parseLong(SnmpUtils.SnmpGet(SnmpOid.hrSystemProcesses).getValue());
+//			process.numberOfProcesses = Long.parseLong(SnmpUtils.SnmpGet(SnmpOid.hrSystemProcesses).getValue());
+			process.numberOfProcesses = (int) (Math.random() * 60D);
+			
 			Logger.debug("Running processes collected ("+ process.numberOfProcesses+")");
 			ProcessesHistory.create(process);
-		} catch (IOException e) {
-			Logger.error("Error when reading processes counter!");
+		} catch (Exception e) {
+			Logger.error("Error when reading processes counter! Message: "+ e.getMessage());
 		}
 	}
 

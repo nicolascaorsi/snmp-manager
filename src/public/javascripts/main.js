@@ -9,7 +9,32 @@ $(function(){
 	updateUptime();
 	updateDescription();
 	updateProcessCount();
+	
 });
+
+function clickedButton(btn) {
+
+	var oid = $('#oid_field').val();
+
+	if (btn==1) {
+		$.getJSON("/snmp/get/"+oid, function(result){
+			var oldText = $('#text_area').val();
+			var newText = 'GET '+oid+': '+result+'\n';
+			$('#text_area').html(oldText + newText.replace('\\n', '<br/>'));
+		});
+	}
+	else if (btn==2) {
+		$.getJSON("/snmp/walk/"+oid, function(result){
+			var oldText = $('#text_area').val();
+			var newText = 'WALK '+oid+': '+result+'\n';
+			$('#text_area').html(oldText + newText.replace('\\n', '<br/>'));
+		});
+	}
+	else if (btn==3) {
+		$('#text_area').html('');
+	}
+	
+}
 
 function updateUptime(){
 	$.getJSON("/history/uptime", function(uptime){

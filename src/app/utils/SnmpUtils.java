@@ -75,4 +75,55 @@ public class SnmpUtils {
 		return 1;//(days * 86400000) + (hours * 3600000) + (minutes * 60000) + (seconds * 1000) + milliseconds;
 	}
 	
+	
+	
+	public static SnmpResponse SnmpGetNext(String oid) throws IOException {
+		// 1. create SNMP session
+		TransportMapping transport = new DefaultUdpTransportMapping();
+		transport.listen();
+
+		// 2. set the target which will be requested
+		CommunityTarget target = new CommunityTarget();
+		target.setCommunity(new OctetString("private"));
+		target.setVersion(SnmpConstants.version1);
+		target.setAddress(new UdpAddress("localhost/161"));
+
+		// 3. create the PDU of the message. In this case a GET
+		PDU request = new PDU();
+		request.add(new VariableBinding(new OID(oid)));
+		request.setType(PDU.GETNEXT);
+		request.setRequestID(new Integer32(1));
+
+		// 4. print output
+		Snmp snmp = null;
+		try {
+			snmp = new Snmp(transport);
+			PDU var =snmp.getNext(request, target).getResponse(); 
+			if (var == null)
+				return null;
+			return new SnmpResponse(var);
+		} finally {
+			if (snmp != null)
+				snmp.close();
+			transport.close();
+		}
+	}
+	
+	
+	public static String SnmpWalk(String oid) throws IOException {
+		SnmpResponse response = SnmpGetNext(oid);
+		
+		String result = "";
+		
+		while(response != null && response.getErrorStatus() == 0 && response.getOid().contains(oid)) {
+			String plus = response.getOid() + " = " + response.getValue() + "\n";
+			
+			result = result + plus;
+			
+			response = SnmpGetNext(response.getOid());
+		}
+		
+		return result;
+	}
+	
 }

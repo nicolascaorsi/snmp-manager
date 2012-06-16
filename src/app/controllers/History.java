@@ -48,14 +48,4 @@ public class History extends Controller {
 		return ok(play.libs.Json.toJson(IcmpEchoRequestHistory.all()));
 	}
 
-	@BodyParser.Of(Json.class)
-	public static Result get(String oid) {		
-		try {
-			return ok(play.libs.Json.toJson(SnmpUtils.SnmpGet(oid).getValue()));
-		} catch (IOException e) {
-			play.Logger.error("Error", e);
-			return internalServerError(e.getMessage());
-		}
-	}
-
 }
